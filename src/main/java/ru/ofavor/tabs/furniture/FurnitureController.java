@@ -48,7 +48,9 @@ public class FurnitureController {
         try {
             article = Integer.parseInt(articleField.getText());
             price = Integer.parseInt(priceField.getText());
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            return;
+        }
 
         String type = typeField.getText();
         String line = lineField.getText();
