@@ -35,12 +35,14 @@ public class LoginDetails   {
 
         if (!result.next()) return false;
 
+        System.out.println("!@#!@#@#");
         boolean isFactory = result.getBoolean("isFactory");
         boolean isStore = result.getBoolean("isStore");
 
         AuthState.getInstance().setFactory(isFactory);
         AuthState.getInstance().setStore(isStore);
         AuthState.getInstance().setLogged(true);
+
         if (isStore) {
             AuthState.getInstance().setFax(result.getString("fax"));
         }

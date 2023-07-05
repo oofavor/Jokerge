@@ -13,7 +13,6 @@ public class LoginController   {
     private LoginDetails details = new LoginDetails();
 
     @FXML private PasswordField passwordField;
-
     @FXML private TextField emailField;
 
     @FXML
@@ -29,7 +28,7 @@ public class LoginController   {
 //        if (!details.validate()) return;
         if (!details.login()) return;
 
-        App.setRoot("secondary");
+        App.setRoot("main");
     }
 
     @FXML

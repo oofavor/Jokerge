@@ -37,7 +37,7 @@ public class OrderFurnitureController {
 
     @FXML
     private void add() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         int furnitureId = 0;
         int orderId = 0;
@@ -57,7 +57,7 @@ public class OrderFurnitureController {
 
     @FXML
     private void delete() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         TableView.TableViewSelectionModel<OrderFurniture> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
@@ -66,7 +66,7 @@ public class OrderFurnitureController {
 
     @FXML
     private void update() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         Integer furnitureId;
         Integer orderId;

@@ -37,7 +37,7 @@ public class ComponentController {
 
     @FXML
     private void add() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         int article = 0;
         int price = 0;
@@ -54,7 +54,7 @@ public class ComponentController {
 
     @FXML
     private void delete() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         TableView.TableViewSelectionModel<Component> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
@@ -63,7 +63,7 @@ public class ComponentController {
 
     @FXML
     private void update() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         Integer article;
         Integer price;
