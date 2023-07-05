@@ -1,4 +1,4 @@
-package ru.ofavor.tabs.furniture;
+package ru.ofavor.tabs.component;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -9,27 +9,24 @@ import ru.ofavor.auth.AuthState;
 
 import java.sql.SQLException;
 
-public class FurnitureController {
-    FurnitureList list = new FurnitureList();
+public class ComponentController {
+    ComponentList list = new ComponentList();
 
-    @FXML TableView<Furniture> table;
+    @FXML TableView<Component> table;
 
-    @FXML TableColumn<Furniture, Integer> articleCol;
-    @FXML TableColumn<Furniture, String> typeCol;
-    @FXML TableColumn<Furniture, Integer> priceCol;
-    @FXML TableColumn<Furniture, String> lineCol;
+    @FXML TableColumn<Component, Integer> articleCol;
+    @FXML TableColumn<Component, String> typeCol;
+    @FXML TableColumn<Component, Integer> priceCol;
 
     @FXML TextField articleField;
     @FXML TextField typeField;
     @FXML TextField priceField;
-    @FXML TextField lineField;
 
     @FXML
     public void initialize() {
-        articleCol.setCellValueFactory(new PropertyValueFactory<Furniture, Integer>("article"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<Furniture, String>("type"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<Furniture, Integer>("price"));
-        lineCol.setCellValueFactory(new PropertyValueFactory<Furniture, String>("line"));
+        articleCol.setCellValueFactory(new PropertyValueFactory<Component, Integer>("article"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<Component, String>("type"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<Component, Integer>("price"));
     }
 
     @FXML
@@ -40,7 +37,7 @@ public class FurnitureController {
 
     @FXML
     private void add() throws SQLException {
-        if (!AuthState.getInstance().isFactory()) return;
+//        if (!AuthState.getInstance().isFactory()) return;
 
         int article = 0;
         int price = 0;
@@ -51,23 +48,22 @@ public class FurnitureController {
         } catch (Exception e) {}
 
         String type = typeField.getText();
-        String line = lineField.getText();
 
-        list.add(new Furniture(article, price, type, line));
+        list.add(new Component(article, price, type));
     }
 
     @FXML
     private void delete() throws SQLException {
-        if (!AuthState.getInstance().isFactory()) return;
+//        if (!AuthState.getInstance().isFactory()) return;
 
-        TableView.TableViewSelectionModel<Furniture> selected = table.getSelectionModel();
+        TableView.TableViewSelectionModel<Component> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
         list.delete(deleteIdx);
     }
 
     @FXML
     private void update() throws SQLException {
-        if (!AuthState.getInstance().isFactory()) return;
+//        if (!AuthState.getInstance().isFactory()) return;
 
         Integer article;
         Integer price;
@@ -85,14 +81,12 @@ public class FurnitureController {
         }
 
         String type = typeField.getText();
-        String line = lineField.getText();
 
         if (type.length() == 0) type = null;
-        if (line.length() == 0) line = null;
 
-        TableView.TableViewSelectionModel<Furniture> selected = table.getSelectionModel();
+        TableView.TableViewSelectionModel<Component> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
 
-        list.update(deleteIdx, article, price, type, line);
+        list.update(deleteIdx, article, price, type);
     }
 }

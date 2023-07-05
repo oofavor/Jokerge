@@ -39,24 +39,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ofavor.tabs.TableController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ofavor.tabs.component.ComponentController">
    <children>
       <AnchorPane prefHeight="417.0" prefWidth="640.0">
          <children>
             <TableView fx:id="table" prefHeight="334.0" prefWidth="640.0">
               <columns>
-                  <TableColumn fx:id="col1" prefWidth="100.0" text="id" />
-                  <TableColumn fx:id="col2" prefWidth="100.0" text="type" />
-                  <TableColumn fx:id="col21" prefWidth="100.0" text="price" />
+                  <TableColumn fx:id="articleCol" prefWidth="100.0" text="id" />
+                  <TableColumn fx:id="typeCol" prefWidth="100.0" text="type" />
+                  <TableColumn fx:id="priceCol" prefWidth="100.0" text="price" />
               </columns>
             </TableView>
             <Button layoutX="548.0" layoutY="334.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="fetch" />
             <Button layoutX="460.0" layoutY="334.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="78.0" text="delete" />
-            <Button layoutX="460.0" layoutY="367.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="add" />
-            <TextField layoutX="22.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="id" />
-            <TextField layoutX="22.0" layoutY="367.0" prefHeight="25.0" prefWidth="173.0" promptText="type" />
-            <TextField layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="price" />
-            <Button layoutX="548.0" layoutY="367.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="update" />
+            <Button layoutX="460.0" layoutY="367.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="78.0" text="add" />
+            <TextField fx:id="articleField" layoutX="22.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="id" />
+            <TextField fx:id="typeField" layoutX="22.0" layoutY="367.0" prefHeight="25.0" prefWidth="173.0" promptText="type" />
+            <TextField fx:id="priceField" layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="price" />
+            <Button layoutX="548.0" layoutY="367.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="78.0" text="update" />
          </children>
       </AnchorPane>
    </children>

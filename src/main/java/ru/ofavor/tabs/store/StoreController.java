@@ -5,6 +5,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ru.ofavor.auth.AuthState;
 
 import java.sql.SQLException;
 
@@ -13,22 +14,16 @@ public class StoreController {
 
     @FXML TableView<Store> table;
 
-    @FXML TableColumn<Store, Integer> articleCol;
-    @FXML TableColumn<Store, String> typeCol;
-    @FXML TableColumn<Store, Integer> priceCol;
-    @FXML TableColumn<Store, String> lineCol;
+    @FXML TableColumn<Store, String> faxCol;
+    @FXML TableColumn<Store, String> addressCol;
 
-    @FXML TextField articleField;
-    @FXML TextField typeField;
-    @FXML TextField priceField;
-    @FXML TextField lineField;
+    @FXML TextField faxField;
+    @FXML TextField addressField;
 
     @FXML
     public void initialize() {
-        articleCol.setCellValueFactory(new PropertyValueFactory<Store, Integer>("article"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<Store, String>("type"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<Store, Integer>("price"));
-        lineCol.setCellValueFactory(new PropertyValueFactory<Store, String>("line"));
+        faxCol.setCellValueFactory(new PropertyValueFactory<Store, String>("fax"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<Store, String>("address"));
     }
 
     @FXML
@@ -39,55 +34,56 @@ public class StoreController {
 
     @FXML
     private void add() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        String fax = "";
+        if (AuthState.getInstance().isFactory()) {
+            fax = faxField.getText();
+            if (fax.length()==0 && AuthState.getInstance().isStore()) {
+                fax = AuthState.getInstance().getFax();
+            }
+        } else if (AuthState.getInstance().isStore()) {
+            fax = AuthState.getInstance().getFax();
+        } else {
+            return;
+        }
 
-        int article = 0;
-        int price = 0;
+        String address = addressField.getText();
 
-        try {
-            article = Integer.parseInt(articleField.getText());
-            price = Integer.parseInt(priceField.getText());
-        } catch (Exception e) {}
-
-        String type = typeField.getText();
-        String line = lineField.getText();
-
-        list.add(new Store(article, price, type, line));
+        list.add(new Store(fax, address));
     }
 
     @FXML
     private void delete() throws SQLException {
         TableView.TableViewSelectionModel<Store> selected = table.getSelectionModel();
+
+        if (!AuthState.getInstance().isFactory()) {}
+        else if (!AuthState.getInstance().isStore() ||
+                !AuthState.getInstance().getFax().equals(selected.getSelectedItem().getFax())) return;
+        else { return;}
+
         int deleteIdx = selected.getFocusedIndex();
         list.delete(deleteIdx);
     }
 
     @FXML
     private void update() throws SQLException {
-        Integer article;
-        Integer price;
-
-        try {
-            price = Integer.valueOf(priceField.getText());
-        } catch (Exception e) {
-            price = null;
+        String fax = faxField.getText();
+        if (AuthState.getInstance().isFactory()) {
+        } else if (AuthState.getInstance().isStore()) {
+            if (!AuthState.getInstance().getFax().equals(table.getSelectionModel().getSelectedItem().getFax())) {
+                return;
+            }
+            fax = AuthState.getInstance().getFax();
+        } else {
+            return;
         }
+        String address = addressField.getText();
 
-        try {
-            article = Integer.valueOf(articleField.getText());
-        } catch (Exception e) {
-            article = null;
-        }
-
-        String type = typeField.getText();
-        String line = lineField.getText();
-
-        if (type.length() == 0) type = null;
-        if (line.length() == 0) line = null;
+        if (fax.length() == 0) fax = null;
+        if (address.length() == 0) address = null;
 
         TableView.TableViewSelectionModel<Store> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
 
-        list.update(deleteIdx, article, price, type, line);
+        list.update(deleteIdx, fax, address);
     }
 }

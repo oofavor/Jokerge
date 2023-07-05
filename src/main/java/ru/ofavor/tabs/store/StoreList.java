@@ -17,7 +17,7 @@ public class StoreList {
 
     public void fetch() throws SQLException {
         items.clear();
-        String query = "SELECT id, price, type, line FROM Furnitures";
+        String query = "SELECT fax, address FROM Stores";
         PreparedStatement statement = Database.getInstance().getConnection().prepareStatement(query);
 
         ResultSet result;
@@ -29,25 +29,21 @@ public class StoreList {
         }
 
         while (result.next()) {
-            int article = result.getInt("id");
-            int price = result.getInt("price");
-            String type = result.getString("type");
-            String line = result.getString("line");
+            String fax = result.getString("fax");
+            String address = result.getString("address");
 
-            Store newStore = new Store(article, price, type, line);
+            Store newStore = new Store(fax, address);
 
             items.add(newStore);
         }
     }
 
     public void add(Store store) throws SQLException {
-        String query = "INSERT INTO Furnitures (id, price, type, line) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Stores (fax, address) VALUES (?, ?)";
         PreparedStatement statement = Database.getInstance().getConnection().prepareStatement(query);
 
-        statement.setInt(1, store.getArticle());
-        statement.setInt(2, store.getPrice());
-        statement.setString(3, store.getType());
-        statement.setString(4, store.getLine());
+        statement.setString(1, store.getFax());
+        statement.setString(2, store.getAddress());
 
         try {
             statement.executeUpdate();
@@ -58,11 +54,11 @@ public class StoreList {
     }
 
     public void delete(int itemId) throws SQLException {
-        int article = items.get(itemId).getArticle();
-        String query = "DELETE FROM Furnitures WHERE id = ?";
+        String fax = items.get(itemId).getFax();
+        String query = "DELETE FROM Stores WHERE fax = ?";
         PreparedStatement statement = Database.getInstance().getConnection().prepareStatement(query);
 
-        statement.setInt(1, article);
+        statement.setString(1, fax);
 
         try {
             statement.executeUpdate();
@@ -72,31 +68,24 @@ public class StoreList {
         }
     }
 
-    public void update(int itemId, Integer article, Integer price, String type, String line) throws SQLException {
-        int articleID = items.get(itemId).getArticle();
+    public void update(int itemId, String fax, String address) throws SQLException {
+        String faxId = items.get(itemId).getFax();
         int i = 0;
-        System.out.println(price);
-        System.out.println(article);
 
         String setString = "SET ";
-        if (article != null) setString += "id=?,";
-        if (price != null) setString += "price=?,";
-        if (type != null) setString += "type=?,";
-        if (line != null) setString += "line=?,";
+        if (fax != null) setString += "fax=?,";
+        if (address != null) setString += "address=?,";
 
         setString = setString.replaceAll(",$", "\n");
 
-        String query = "UPDATE Furnitures " + setString + "WHERE id=?;";
-        System.out.println(query);
+        String query = "UPDATE Stores " + setString + "WHERE fax=?;";
 
         PreparedStatement statement = Database.getInstance().getConnection().prepareStatement(query);
 
-        if (article != null) statement.setInt(++i, article);
-        if (price != null) statement.setInt(++i, price);
-        if (type != null) statement.setString(++i, type);
-        if (line != null) statement.setString(++i, line);
+        if (fax != null) statement.setString(++i, fax);
+        if (address != null) statement.setString(++i, address);
 
-        statement.setInt(++i, articleID);
+        statement.setString(++i, faxId);
 
         try {
             statement.executeUpdate();

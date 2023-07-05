@@ -1,50 +1,29 @@
 package ru.ofavor.tabs.store;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Store {
-    private SimpleIntegerProperty article;
-    private SimpleIntegerProperty price;
-    private SimpleStringProperty type;
-    private SimpleStringProperty line;
+    private SimpleStringProperty fax;
+    private SimpleStringProperty address;
 
-    public Store(int article, int price, String type, String line) {
-        this.article = new SimpleIntegerProperty(article);
-        this.price = new SimpleIntegerProperty(price);
-        this.type = new SimpleStringProperty(type);
-        this.line = new SimpleStringProperty(line);
+    public Store(String fax, String address) {
+        this.fax = new SimpleStringProperty(fax);
+        this.address = new SimpleStringProperty(address);
     }
 
-    public int getArticle() {
-        return article.get();
+    public String getAddress() {
+        return address.get();
     }
 
-    public int getPrice() {
-        return price.get();
+    public String getFax() {
+        return fax.get();
     }
 
-    public String getLine() {
-        return line.get();
+    public void setAddress(String address) {
+        this.address = new SimpleStringProperty(address);
     }
 
-    public String getType() {
-        return type.get();
-    }
-
-    public void setArticle(int article) {
-        this.article = new SimpleIntegerProperty(article);
-    }
-
-    public void setLine(String line) {
-        this.line = new SimpleStringProperty(line);
-    }
-
-    public void setPrice(int price) {
-        this.price = new SimpleIntegerProperty(price);
-    }
-
-    public void setType(String type) {
-        this.type = new SimpleStringProperty(type);
+    public void setFax(String fax) {
+        this.fax = new SimpleStringProperty(fax);
     }
 }
