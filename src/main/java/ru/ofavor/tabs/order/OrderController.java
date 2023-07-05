@@ -6,6 +6,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ru.ofavor.auth.AuthState;
+import ru.ofavor.auth.AuthUtils;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class OrderController {
 
     @FXML
     private void add() throws SQLException {
-//        if (!AuthState.getInstance().isStore()) return;
+        if (!AuthState.getInstance().isStore()) return;
 
         int article=0;
 
@@ -47,14 +48,14 @@ public class OrderController {
             return;
         }
 
-        String fax = faxField.getText();
+        String fax = AuthState.getInstance().getFax();
 
         list.add(new Order(article, fax, new java.sql.Date(new Date().getTime())));
     }
 
     @FXML
     private void delete() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         TableView.TableViewSelectionModel<Order> selected = table.getSelectionModel();
         int deleteIdx = selected.getFocusedIndex();
@@ -63,7 +64,7 @@ public class OrderController {
 
     @FXML
     private void update() throws SQLException {
-//        if (!AuthState.getInstance().isFactory()) return;
+        if (!AuthState.getInstance().isFactory()) return;
 
         Integer article;
 

@@ -98,6 +98,5 @@ public class ComponentList {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

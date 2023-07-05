@@ -39,24 +39,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ofavor.tabs.TableController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ofavor.tabs.orderfurniture.OrderFurnitureController">
    <children>
       <AnchorPane prefHeight="417.0" prefWidth="640.0">
          <children>
             <TableView fx:id="table" prefHeight="334.0" prefWidth="640.0">
               <columns>
-                  <TableColumn fx:id="col2" prefWidth="100.0" text="furnitureArticle" />
-                  <TableColumn fx:id="col21" prefWidth="100.0" text="orderId" />
-                  <TableColumn fx:id="col211" prefWidth="100.0" text="quantity" />
+                  <TableColumn fx:id="furnitureCol" prefWidth="100.0" text="furnitureArticle" />
+                  <TableColumn fx:id="orderCol" prefWidth="100.0" text="orderId" />
+                  <TableColumn fx:id="quantityCol" prefWidth="100.0" text="quantity" />
               </columns>
             </TableView>
             <Button layoutX="548.0" layoutY="334.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="fetch" />
             <Button layoutX="460.0" layoutY="334.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="78.0" text="delete" />
-            <Button layoutX="460.0" layoutY="367.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="add" />
-            <TextField layoutX="22.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="furnitureArticle" />
-            <TextField layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="orderId" />
-            <Button layoutX="548.0" layoutY="367.0" mnemonicParsing="false" onAction="#fetch" prefHeight="25.0" prefWidth="78.0" text="update" />
-            <TextField layoutX="22.0" layoutY="367.0" prefHeight="25.0" prefWidth="173.0" promptText="quantity" />
+            <Button layoutX="460.0" layoutY="367.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="78.0" text="add" />
+            <TextField fx:id="furnitureField" layoutX="22.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="furnitureArticle" />
+            <TextField fx:id="orderField" layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="orderId" />
+            <Button layoutX="548.0" layoutY="367.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="78.0" text="update" />
+            <TextField fx:id="quantityField" layoutX="22.0" layoutY="367.0" prefHeight="25.0" prefWidth="173.0" promptText="quantity" />
          </children>
       </AnchorPane>
    </children>

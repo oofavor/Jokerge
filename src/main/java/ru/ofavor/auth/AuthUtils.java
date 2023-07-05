@@ -36,6 +36,7 @@ public class AuthUtils {
                 }
                 builder.append(Long.toString(b & 0xff, 16));
             }
+            password = builder.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }

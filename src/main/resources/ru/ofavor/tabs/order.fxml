@@ -54,7 +54,7 @@
             <Button layoutX="460.0" layoutY="334.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="78.0" text="delete" />
             <Button layoutX="460.0" layoutY="367.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="78.0" text="add" />
             <TextField fx:id="articleField" layoutX="22.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="id" />
-            <TextField fx:id="faxField" layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="date" />
+            <TextField fx:id="faxField" layoutX="252.0" layoutY="334.0" prefHeight="25.0" prefWidth="173.0" promptText="store fax" />
             <Button layoutX="548.0" layoutY="367.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="78.0" text="update" />
          </children>
       </AnchorPane>

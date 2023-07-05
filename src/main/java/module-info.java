@@ -10,6 +10,8 @@ module ru.ofavor {
     opens ru.ofavor.tabs.store to javafx.fxml;
     opens ru.ofavor.tabs.component to javafx.fxml;
     opens ru.ofavor.tabs.order to javafx.fxml;
+    opens ru.ofavor.tabs.furniturecomponent to javafx.fxml;
+    opens ru.ofavor.tabs.orderfurniture to javafx.fxml;
 
     exports ru.ofavor;
     exports ru.ofavor.auth;
@@ -18,4 +20,6 @@ module ru.ofavor {
     exports ru.ofavor.tabs.store;
     exports ru.ofavor.tabs.component;
     exports ru.ofavor.tabs.order;
+    exports ru.ofavor.tabs.furniturecomponent;
+    exports ru.ofavor.tabs.orderfurniture;
 }
